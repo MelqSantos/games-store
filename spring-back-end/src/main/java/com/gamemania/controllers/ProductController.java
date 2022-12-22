@@ -26,6 +26,11 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.getById(id));
     }
 
+    @GetMapping("/title/{title}")
+    public ResponseEntity<List<Product>> getByTitle(@PathVariable String title){
+        return ResponseEntity.ok().body(productService.getByTitle(title));
+    }
+
     @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody Product product){
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.add(product));
@@ -36,7 +41,7 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.update(id, product));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id){
         productService.delete(id);
 

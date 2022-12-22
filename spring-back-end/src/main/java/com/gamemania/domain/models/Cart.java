@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -18,6 +19,8 @@ public class Cart {
     private int cart_id;
 
     @OneToMany(mappedBy = "product_id")
-    @Column(name = "product_id")
     private List<Product> productList;
+
+    @Transient
+    private BigDecimal total;
 }

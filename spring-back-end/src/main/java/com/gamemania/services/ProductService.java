@@ -29,6 +29,11 @@ public class ProductService {
                 .orElseThrow( () -> new ObjNotFoundException("Elemento com ID " + id +" não foi localizado"));
     }
 
+    public List<Product> getByTitle(String title){
+        return productRepository.findByTitleContainsIgnoreCase(title)
+                .orElseThrow( () -> new ObjNotFoundException("Elemento com título " + title + " não foi localizado"));
+    }
+
     public Product update(int id, Product product){
 
         Optional<Product> opt = productRepository.findById(id);
@@ -49,6 +54,14 @@ public class ProductService {
     }
 
     public void delete(int id){
-        productRepository.deleteById(id);
+
+        Optional<Product> opt = productRepository.findById(id);
+
+        if(opt.isPresent()){
+            productRepository.deleteById(id);
+        } else {
+            throw new ObjNotFoundException("Elemento com ID " + id +" não foi localizado");
+        }
+
     }
 }
