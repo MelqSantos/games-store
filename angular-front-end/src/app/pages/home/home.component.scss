@@ -62,15 +62,17 @@ section {
 
         .bottom-icons {
             display: flex;
-            width: auto;
+            justify-content: space-evenly;
+            width: 20%;
             position: absolute;
             bottom: 3%;
             right: 5%;
 
             .ico {
                 color: #ffffff;
+                width: 70px;
+                filter: drop-shadow(.5px 1px #ffffffa8);
                 text-align: center;
-                margin: 5%;
 
                 &:hover {
                     transform: scale(1.1);
